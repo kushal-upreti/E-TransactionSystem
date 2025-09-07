@@ -1,0 +1,61 @@
+# -----------------------
+# Python
+# -----------------------
+__pycache__/
+*.py[cod]
+*.pyo
+
+# -----------------------
+# Virtual environment
+# -----------------------
+myenv/
+venv/
+.env
+
+# -----------------------
+# Django
+# -----------------------
+# Ignore database
+*.sqlite3
+
+# Ignore migrations but keep __init__.py
+*/migrations/*.pyc
+*/migrations/__pycache__/
+!*/migrations/__init__.py
+
+# Ignore media and static files
+/media/
+/static/
+
+# Ignore local settings (if you have any)
+settings_local.py
+
+# -----------------------
+# Logs
+# -----------------------
+*.log
+
+# -----------------------
+# IDEs
+# -----------------------
+.vscode/
+.idea/
+
+# -----------------------
+# MacOS
+# -----------------------
+.DS_Store
+
+# -----------------------
+# Testing / Coverage
+# -----------------------
+.pytest_cache/
+htmlcov/
+.coverage
+.coverage.*
+
+# -----------------------
+# Other
+# -----------------------
+*.tgz
+*.zip
