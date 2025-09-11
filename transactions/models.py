@@ -3,7 +3,7 @@ from accounts.models import UserProfile
 from decimal import Decimal
 # Create your models here.
 class Wallet(models.Model):
-    user=models.OneToOneField(UserProfile, on_delete=models.SET_NULL)
+    user=models.OneToOneField(UserProfile, on_delete=models.SET_NULL, null=True)
     balance=models.DecimalField(max_digits=12, decimal_places=2, default=Decimal('0.00'))
 
     def debit(self, amount):
