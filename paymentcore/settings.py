@@ -44,6 +44,7 @@ INSTALLED_APPS = [
 
     #local apps
     'accounts.apps.AccountsConfig',
+    'transactions.apps.TransactionsConfig',
     'rest_framework',
     'corsheaders',
     'rest_framework.authtoken',
