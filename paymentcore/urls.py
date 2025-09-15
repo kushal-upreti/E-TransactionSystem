@@ -24,7 +24,7 @@ from django.contrib.auth import views as auth_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('accounts.urls')),
-    path('api/transaction', include('transactions.urls')),
+    path('api/transaction/', include('transactions.urls')),
     path('api_auth/', include('rest_framework.urls')),
     path('api/dj_rest_auth/', include('dj_rest_auth.urls')),
     path('api/user_registration/', include('dj_rest_auth.registration.urls')),

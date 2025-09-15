@@ -12,4 +12,8 @@ class SendMoneyView(generics.CreateAPIView):
 class WalletView(generics.RetrieveAPIView):
     queryset=Wallet.objects.all()
     serializer_class=WalletSerializers
-    permission_classes=[IsUserOwnerOrReadOnly]
+
+class ListWallet(generics.ListAPIView):
+    queryset=Wallet.objects.all()
+    serializer_class=WalletSerializers
+    permission_classes=[permissions.IsAdminUser]

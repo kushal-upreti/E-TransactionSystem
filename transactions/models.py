@@ -16,6 +16,9 @@ class Wallet(models.Model):
         self.balance += amount
         self.save(update_fields=['balance'])
 
+    def __str__(self):
+        return self.user.name
+
 class Transaction(models.Model):
     sender=models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='sent_transactions')
     receiver=models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='received_transactions')
@@ -28,8 +31,16 @@ class Transaction(models.Model):
         if self.status != 'pending':
             raise ValueError('Transaction already processed')
         with db_transaction.atomic():
-            sender_wallet= Wallet.objects.select_for_update.get(user=self.sender)
-            receiver_wallet= Wallet.objects.select_for_update.get(user=self.receiver)
+
+            try:
+                sender_wallet= Wallet.objects.select_for_update().get(user=self.sender)
+                receiver_wallet= Wallet.objects.select_for_update().get(user=self.receiver)
+            except Wallet.DoesNotExist:
+                raise ValueError("Wallet Doesnot exist for that user:")
+            
+            sender_wallet.debit(self.amount)
+            receiver_wallet.credit(self.amount)
+            
             self.status= 'success'
             self.save(update_fields=['status'])
     
